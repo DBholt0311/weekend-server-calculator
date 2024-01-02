@@ -1,21 +1,24 @@
 const express = require('express');
 const app = express();
+let calcHist = require('./data/calculations-data');
 let PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.static('server/public'));
 
-// Global variable that will contain all of the
-// calculation objects:
-let calculations = []
-
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
+app.get('/calculations', function(req, res) {
+  res.send(calcHist);
+});
 
 // POST /calculations
-
+app.post('/calculations', (req, res) => {
+  const newCalc = req.body;
+  console.log('Get a POST request', newCalc);
+});
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
